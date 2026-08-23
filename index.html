@@ -5,12 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>實驗記錄簿｜關係實驗室</title>
   
-  <!-- LINE / 社群軟體預覽標籤 (Open Graph) -->
+  <!-- 社群預覽標籤 (Open Graph / FB / LINE / Messenger) -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="🧪 實驗記錄簿 🧪">
-  <meta property="og:description" content="待實踐的關係，讓文字踏出第一步">
-  <meta name="description" content="待實踐的關係，讓文字踏出第一步">
+  <meta property="og:title" content="實驗記錄簿｜關係實驗室">
+  <meta property="og:description" content="待實踐的關係，讓文字踏出第一步。歡迎在這裡留下你的便利貼與實驗紀錄。">
+  <!-- 社群預覽圖片 (可替換為您自己的圖片網址) -->
+  <meta property="og:image" content="https://images.unsplash.com/photo-1511497584788-8767611136f6?q=80&w=1200&auto=format&fit=crop">
 
+  <!-- Twitter Card 社群預覽標籤 -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="實驗記錄簿｜關係實驗室">
+  <meta name="twitter:description" content="待實踐的關係，讓文字踏出第一步。歡迎在這裡留下你的便利貼與實驗紀錄。">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1511497584788-8767611136f6?q=80&w=1200&auto=format&fit=crop">
+
+  <!-- 載入 Google 字體：溫暖圓體風格 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
@@ -64,6 +72,7 @@
       gap: 22px;
     }
 
+    /* 一般短文便利貼 (保有傾斜) */
     .note {
       background: #fef6c9;
       color: #2c2c2c;
@@ -91,6 +100,7 @@
       backdrop-filter: blur(1px);
     }
 
+    /* 長文模式樣式 (擺正、信紙感、加強邊框與膠帶) */
     .note.long-text {
       transform: rotate(0deg) !important;
       border-left: 4px solid #4a7c59;
@@ -120,7 +130,7 @@
     }
 
     .long-text .note-body {
-      max-height: 350px;
+      max-height: 380px;
       overflow-y: auto;
       padding-right: 5px;
     }
@@ -203,7 +213,9 @@
           const styleClass = styleIndex > 0 ? `alt-${styleIndex}` : '';
           
           const messageText = item.message || '';
-          const isLongText = messageText.length > 500;
+          
+          // 長文門檻設定：超過 300 字即轉為直式擺正
+          const isLongText = messageText.length > 300;
 
           if (isLongText) {
             note.className = `note ${styleClass} long-text`;
