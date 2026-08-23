@@ -1,0 +1,248 @@
+{\rtf1\ansi\ansicpg950\cocoartf2870
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="zh-TW">\
+<head>\
+  <meta charset="UTF-8">\
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">\
+  <title>\uc0\u26862 \u26519 \u27193 \u27934 \u65372 \u20670 \u32893 \u20320 \u30340 \u24515 \u32882 </title>\
+  \
+  <!-- \uc0\u36617 \u20837  Google \u23383 \u39636 \u65306 \u28331 \u26262 \u22291 \u39636 /\u25163 \u23531 \u39080 \u26684  -->\
+  <link rel="preconnect" href="https://fonts.googleapis.com">\
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">\
+  \
+  <style>\
+    * \{\
+      box-sizing: border-box;\
+      margin: 0;\
+      padding: 0;\
+    \}\
+\
+    body \{\
+      background: radial-gradient(circle at center, #2d4a3e 0%, #112219 100%);\
+      font-family: 'Zen Maru Gothic', sans-serif;\
+      color: #e2ebd9;\
+      display: flex;\
+      justify-content: center;\
+      min-height: 100vh;\
+      overflow-x: hidden;\
+    \}\
+\
+    /* \uc0\u25163 \u27231 \u30452 \u24335 \u23481 \u22120  */\
+    .container \{\
+      width: 100%;\
+      max-width: 480px;\
+      padding: 20px 15px 90px 15px;\
+      position: relative;\
+    \}\
+\
+    /* \uc0\u27161 \u38988 \u21312  */\
+    header \{\
+      text-align: center;\
+      margin-bottom: 25px;\
+      padding-top: 10px;\
+    \}\
+\
+    header h1 \{\
+      font-size: 1.8rem;\
+      letter-spacing: 2px;\
+      color: #d4e7c5;\
+      text-shadow: 0 0 10px rgba(212, 231, 197, 0.3);\
+    \}\
+\
+    header p \{\
+      font-size: 0.85rem;\
+      color: #8fa89b;\
+      margin-top: 6px;\
+    \}\
+\
+    /* \uc0\u30041 \u35328 \u29254 \u21312 \u22495  */\
+    .board \{\
+      display: flex;\
+      flex-direction: column;\
+      gap: 22px;\
+    \}\
+\
+    /* \uc0\u20415 \u21033 \u36028 \u21345 \u29255  basic style */\
+    .note \{\
+      background: #fef6c9; /* \uc0\u28331 \u26262 \u40643 \u33394  */\
+      color: #2c2c2c;\
+      padding: 20px;\
+      border-radius: 2px;\
+      box-shadow: 4px 6px 15px rgba(0,0,0,0.35);\
+      position: relative;\
+      transition: transform 0.3s ease;\
+    \}\
+\
+    /* \uc0\u38568 \u27231 \u33394 \u24425 \u25645 \u37197  */\
+    .note.alt-1 \{ background: #fce1e4; \} /* \uc0\u26580 \u31881  */\
+    .note.alt-2 \{ background: #e2f0d9; \} /* \uc0\u28129 \u32160  */\
+    .note.alt-3 \{ background: #e0f2fe; \} /* \uc0\u28129 \u34253  */\
+\
+    /* \uc0\u38914 \u37096 \u32025 \u33184 \u24118 \u35037 \u39166  */\
+    .note::before \{\
+      content: '';\
+      position: absolute;\
+      top: -10px;\
+      left: 50%;\
+      transform: translateX(-50%);\
+      width: 70px;\
+      height: 20px;\
+      background: rgba(255, 255, 255, 0.45);\
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);\
+      backdrop-filter: blur(1px);\
+    \}\
+\
+    /* To: \uc0\u27396 \u20301  */\
+    .note-to \{\
+      font-size: 1.05rem;\
+      font-weight: bold;\
+      color: #444;\
+      margin-bottom: 10px;\
+      border-bottom: 1px dashed rgba(0,0,0,0.15);\
+      padding-bottom: 6px;\
+    \}\
+\
+    /* \uc0\u20839 \u25991  \u27396 \u20301  */\
+    .note-body \{\
+      font-size: 1rem;\
+      line-height: 1.6;\
+      margin-bottom: 15px;\
+      white-space: pre-wrap;\
+      word-break: break-all;\
+    \}\
+\
+    /* \uc0\u32626 \u21517  \u27396 \u20301  */\
+    .note-from \{\
+      text-align: right;\
+      font-size: 0.9rem;\
+      font-weight: bold;\
+      color: #555;\
+    \}\
+\
+    /* \uc0\u25080 \u28014 \u25353 \u37397 \u65306 \u38283 \u21855  Google \u34920 \u21934  */\
+    .fab-btn \{\
+      position: fixed;\
+      bottom: 20px;\
+      left: 50%;\
+      transform: translateX(-50%);\
+      background: #4a7c59;\
+      color: #fff;\
+      padding: 12px 28px;\
+      border-radius: 30px;\
+      text-decoration: none;\
+      font-weight: bold;\
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);\
+      border: 1px solid #68a378;\
+      display: flex;\
+      align-items: center;\
+      gap: 8px;\
+      z-index: 100;\
+    \}\
+\
+    .fab-btn:active \{\
+      transform: translateX(-50%) scale(0.95);\
+      background: #3b6347;\
+    \}\
+\
+    .loading \{\
+      text-align: center;\
+      padding: 40px;\
+      color: #8fa89b;\
+    \}\
+  </style>\
+</head>\
+<body>\
+\
+  <div class="container">\
+    <header>\
+      <h1>\uc0\u55356 \u57138  \u27193 \u27934 \u30041 \u35328 \u26495  \u55356 \u57138 </h1>\
+      <p>\uc0\u36629 \u36629 \u20670 \u21520 \u20320 \u30340 \u24515 \u32882 \u65292 \u24708 \u24708 \u34255 \u36914 \u26862 \u26519 \u35041 </p>\
+    </header>\
+\
+    <main class="board" id="board">\
+      <div class="loading">\uc0\u27491 \u22312 \u20670 \u32893 \u26862 \u26519 \u35041 \u30340 \u32882 \u38899 ...</div>\
+    </main>\
+  </div>\
+\
+  <!-- \uc0\u23531 \u20449 \u25080 \u28014 \u25353 \u37397  -->\
+  <!-- \uc0\u35531 \u23559 \u19979 \u26041  href \u30340 \u32178 \u22336 \u26367 \u25563 \u25104 \u24744 \u30340  Google \u34920 \u21934 \u36899 \u32080  -->\
+  <a href="
+\f1\fs26 https://docs.google.com/forms/d/e/1FAIpQLSfTE3H1PkwsC-_cT2IqxrVI1vCGNpR7lz0a-sHQ_Bz0EG0MGA/viewform?usp=dialog
+\f0\fs24 " target="_blank" class="fab-btn">\
+    \uc0\u9997 \u65039  \u23531 \u19979 \u24515 \u32882  (\u22635 \u23531 \u34920 \u21934 )\
+  </a>\
+\
+  <script>\
+    // 1. \uc0\u35531 \u23559 \u19979 \u26041 \u32178 \u22336 \u26367 \u25563 \u28858 \u27493 \u39519 \u19968 \u20013 \u21462 \u24471 \u30340  Apps Script \u32178 \u38913 \u25033 \u29992 \u31243 \u24335  URL\
+    const GAS_API_URL = "{\field{\*\fldinst{HYPERLINK "https://script.google.com/macros/s/AKfycbzPiGUQ8k34936NLX-dviH8m9RjLNTKOoxO4L3Tjk-OSJpg-rbUFvgdmE7J6YtOW1-wJg/exec"}}{\fldrslt 
+\f1\fs26 https://script.google.com/macros/s/AKfycbzPiGUQ8k34936NLX-dviH8m9RjLNTKOoxO4L3Tjk-OSJpg-rbUFvgdmE7J6YtOW1-wJg/exec}}";\
+\
+    async function fetchMessages() \{\
+      const board = document.getElementById('board');\
+      try \{\
+        const response = await fetch(GAS_API_URL);\
+        const data = await response.json();\
+\
+        // \uc0\u36991 \u20813 \u37325 \u35079 \u37325 \u26032 \u28210 \u26579 \u23566 \u33268 \u21205 \u30059 \u38275 \u29197 \u65288 \u21487 \u20381 \u29376 \u27841 \u35519 \u25972 \u65289 \
+        board.innerHTML = '';\
+\
+        if (!data || data.length === 0) \{\
+          board.innerHTML = '<div class="loading">\uc0\u27193 \u27934 \u35041 \u36996 \u27794 \u26377 \u30041 \u35328 \u65292 \u25104 \u28858 \u31532 \u19968 \u20491 \u30041 \u19979 \u24515 \u32882 \u30340 \u20154 \u21543 \u65281 </div>';\
+          return;\
+        \}\
+\
+        // \uc0\u26368 \u26032 \u30041 \u35328 \u39023 \u31034 \u22312 \u26368 \u19978 \u26041 \
+        data.reverse().forEach((item, index) => \{\
+          const note = document.createElement('div');\
+          \
+          // \uc0\u38568 \u27231 \u20998 \u37197 \u20415 \u21033 \u36028 \u38991 \u33394 \
+          const styleIndex = index % 4;\
+          const styleClass = styleIndex > 0 ? `alt-$\{styleIndex\}` : '';\
+          \
+          // \uc0\u38568 \u27231 \u35282 \u24230  (-3.5\u24230  \u21040  +3.5\u24230 )\u65292 \u35069 \u36896 \u33258 \u28982 \u24494 \u20670 \u26012 \u25928 \u26524 \
+          const randomDeg = (Math.random() * 7 - 3.5).toFixed(1);\
+          \
+          note.className = `note $\{styleClass\}`;\
+          note.style.transform = `rotate($\{randomDeg\}deg)`;\
+\
+          note.innerHTML = `\
+            <div class="note-to">To: $\{escapeHtml(item.receiver || '\uc0\u28961 ')\}</div>\
+            <div class="note-body">$\{escapeHtml(item.message || '')\}</div>\
+            <div class="note-from">\'97\'97 $\{escapeHtml(item.sender || '\uc0\u21311 \u21517 ')\}</div>\
+          `;\
+\
+          board.appendChild(note);\
+        \});\
+\
+      \} catch (error) \{\
+        console.error("\uc0\u25235 \u21462 \u30041 \u35328 \u22833 \u25943 \u65306 ", error);\
+      \}\
+    \}\
+\
+    // \uc0\u38450  XSS \u25915 \u25802 \u36681 \u25563 \u20989 \u25976 \
+    function escapeHtml(str) \{\
+      return str.replace(/&/g, "&amp;")\
+                .replace(/</g, "&lt;")\
+                .replace(/>/g, "&gt;")\
+                .replace(/"/g, "&quot;")\
+                .replace(/'/g, "&#039;");\
+    \}\
+\
+    // \uc0\u21021 \u27425 \u36617 \u20837 \
+    fetchMessages();\
+\
+    // \uc0\u27599  5 \u31186 \u33258 \u21205 \u23526 \u26178 \u26356 \u26032  (5000ms)\
+    setInterval(fetchMessages, 5000);\
+\
+    // \uc0\u30070 \u20351 \u29992 \u32773 \u22635 \u23436 \u34920 \u21934 \u20999 \u25563 \u22238 \u27492 \u35222 \u31383 \u26178 \u65292 \u31435 \u21051 \u21047 \u26032 \
+    window.addEventListener('focus', fetchMessages);\
+  </script>\
+</body>\
+</html>}
