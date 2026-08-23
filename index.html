@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>實驗記錄簿｜關係實驗室</title>
   
+  <!-- LINE / 社群軟體預覽標籤 (Open Graph) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="🧪 實驗記錄簿 🧪">
+  <meta property="og:description" content="待實踐的關係，讓文字踏出第一步">
+  <meta name="description" content="待實踐的關係，讓文字踏出第一步">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
@@ -58,7 +64,6 @@
       gap: 22px;
     }
 
-    /* 一般短文便利貼 */
     .note {
       background: #fef6c9;
       color: #2c2c2c;
@@ -86,7 +91,6 @@
       backdrop-filter: blur(1px);
     }
 
-    /* 長文模式 (超過500字擺正) */
     .note.long-text {
       transform: rotate(0deg) !important;
       border-left: 4px solid #4a7c59;
@@ -199,8 +203,6 @@
           const styleClass = styleIndex > 0 ? `alt-${styleIndex}` : '';
           
           const messageText = item.message || '';
-          
-          // 長文判定門檻：500字
           const isLongText = messageText.length > 500;
 
           if (isLongText) {
