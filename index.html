@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>森林樹洞｜傾聽你的心聲</title>
   
-  <!-- 載入 Google 字體：溫暖圓體/手寫風格 -->
+  <!-- 載入 Google 字體：溫暖圓體風格 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
@@ -27,7 +27,6 @@
       overflow-x: hidden;
     }
 
-    /* 手機直式容器 */
     .container {
       width: 100%;
       max-width: 480px;
@@ -35,7 +34,6 @@
       position: relative;
     }
 
-    /* 標題區 */
     header {
       text-align: center;
       margin-bottom: 25px;
@@ -55,16 +53,14 @@
       margin-top: 6px;
     }
 
-    /* 留言牆區域 */
     .board {
       display: flex;
       flex-direction: column;
       gap: 22px;
     }
 
-    /* 便利貼卡片 basic style */
     .note {
-      background: #fef6c9; /* 溫暖黃色 */
+      background: #fef6c9;
       color: #2c2c2c;
       padding: 20px;
       border-radius: 2px;
@@ -73,12 +69,10 @@
       transition: transform 0.3s ease;
     }
 
-    /* 隨機色彩搭配 */
-    .note.alt-1 { background: #fce1e4; } /* 柔粉 */
-    .note.alt-2 { background: #e2f0d9; } /* 淡綠 */
-    .note.alt-3 { background: #e0f2fe; } /* 淡藍 */
+    .note.alt-1 { background: #fce1e4; }
+    .note.alt-2 { background: #e2f0d9; }
+    .note.alt-3 { background: #e0f2fe; }
 
-    /* 頂部紙膠帶裝飾 */
     .note::before {
       content: '';
       position: absolute;
@@ -92,7 +86,6 @@
       backdrop-filter: blur(1px);
     }
 
-    /* To: 欄位 */
     .note-to {
       font-size: 1.05rem;
       font-weight: bold;
@@ -102,7 +95,6 @@
       padding-bottom: 6px;
     }
 
-    /* 內文 欄位 */
     .note-body {
       font-size: 1rem;
       line-height: 1.6;
@@ -111,7 +103,6 @@
       word-break: break-all;
     }
 
-    /* 署名 欄位 */
     .note-from {
       text-align: right;
       font-size: 0.9rem;
@@ -119,7 +110,6 @@
       color: #555;
     }
 
-    /* 懸浮按鈕：開啟 Google 表單 */
     .fab-btn {
       position: fixed;
       bottom: 20px;
@@ -164,14 +154,12 @@
     </main>
   </div>
 
-  <!-- 寫信懸浮按鈕 -->
-  <!-- 請將下方 href 的網址替換成您的 Google 表單連結 -->
+  <!-- 按鈕文字已修改為：點此寫下便利貼 -->
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSfTE3H1PkwsC-_cT2IqxrVI1vCGNpR7lz0a-sHQ_Bz0EG0MGA/viewform?usp=dialog" target="_blank" class="fab-btn">
-    ✍️ 寫下心聲 (填寫表單)
+    ✍️ 點此寫下便利貼
   </a>
 
   <script>
-    // 1. 請將下方網址替換為步驟一中取得的 Apps Script 網頁應用程式 URL
     const GAS_API_URL = "https://script.google.com/macros/s/AKfycbzPiGUQ8k34936NLX-dviH8m9RjLNTKOoxO4L3Tjk-OSJpg-rbUFvgdmE7J6YtOW1-wJg/exec";
 
     async function fetchMessages() {
@@ -180,7 +168,6 @@
         const response = await fetch(GAS_API_URL);
         const data = await response.json();
 
-        // 避免重複重新渲染導致動畫閃爍（可依狀況調整）
         board.innerHTML = '';
 
         if (!data || data.length === 0) {
@@ -188,15 +175,11 @@
           return;
         }
 
-        // 最新留言顯示在最上方
         data.reverse().forEach((item, index) => {
           const note = document.createElement('div');
           
-          // 隨機分配便利貼顏色
           const styleIndex = index % 4;
           const styleClass = styleIndex > 0 ? `alt-${styleIndex}` : '';
-          
-          // 隨機角度 (-3.5度 到 +3.5度)，製造自然微傾斜效果
           const randomDeg = (Math.random() * 7 - 3.5).toFixed(1);
           
           note.className = `note ${styleClass}`;
@@ -216,22 +199,18 @@
       }
     }
 
-    // 防 XSS 攻擊轉換函數
     function escapeHtml(str) {
-      return str.replace(/&/g, "&amp;")
+      if (!str) return '';
+      return String(str)
+                .replace(/&/g, "&amp;")
                 .replace(/</g, "&lt;")
                 .replace(/>/g, "&gt;")
                 .replace(/"/g, "&quot;")
                 .replace(/'/g, "&#039;");
     }
 
-    // 初次載入
     fetchMessages();
-
-    // 每 5 秒自動實時更新 (5000ms)
     setInterval(fetchMessages, 5000);
-
-    // 當使用者填完表單切換回此視窗時，立刻刷新
     window.addEventListener('focus', fetchMessages);
   </script>
 </body>
