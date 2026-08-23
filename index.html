@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>森林樹洞｜傾聽你的心聲</title>
+  <title>實驗記錄簿｜關係實驗室</title>
   
-  <!-- 載入 Google 字體：溫暖圓體風格 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
@@ -59,6 +58,7 @@
       gap: 22px;
     }
 
+    /* 一般短文便利貼 */
     .note {
       background: #fef6c9;
       color: #2c2c2c;
@@ -86,6 +86,18 @@
       backdrop-filter: blur(1px);
     }
 
+    /* 長文模式 (超過500字擺正) */
+    .note.long-text {
+      transform: rotate(0deg) !important;
+      border-left: 4px solid #4a7c59;
+      padding: 22px 20px;
+    }
+
+    .note.long-text::before {
+      width: 110px;
+      top: -12px;
+    }
+
     .note-to {
       font-size: 1.05rem;
       font-weight: bold;
@@ -97,10 +109,16 @@
 
     .note-body {
       font-size: 1rem;
-      line-height: 1.6;
+      line-height: 1.65;
       margin-bottom: 15px;
       white-space: pre-wrap;
       word-break: break-all;
+    }
+
+    .long-text .note-body {
+      max-height: 350px;
+      overflow-y: auto;
+      padding-right: 5px;
     }
 
     .note-from {
@@ -145,16 +163,15 @@
 
   <div class="container">
     <header>
-      <h1>🌲 樹洞留言板 🌲</h1>
-      <p>輕輕傾吐你的心聲，悄悄藏進森林裡</p>
+      <h1>🧪 實驗記錄簿 🧪</h1>
+      <p>待實踐的關係，讓文字踏出第一步</p>
     </header>
 
     <main class="board" id="board">
-      <div class="loading">正在傾聽森林裡的聲音...</div>
+      <div class="loading">正在讀取實驗紀錄...</div>
     </main>
   </div>
 
-  <!-- 按鈕文字已修改為：點此寫下便利貼 -->
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSfTE3H1PkwsC-_cT2IqxrVI1vCGNpR7lz0a-sHQ_Bz0EG0MGA/viewform?usp=dialog" target="_blank" class="fab-btn">
     ✍️ 點此寫下便利貼
   </a>
@@ -171,7 +188,7 @@
         board.innerHTML = '';
 
         if (!data || data.length === 0) {
-          board.innerHTML = '<div class="loading">樹洞裡還沒有留言，成為第一個留下心聲的人吧！</div>';
+          board.innerHTML = '<div class="loading">目前尚無實驗紀錄，點擊下方按鈕新增第一筆！</div>';
           return;
         }
 
@@ -180,14 +197,23 @@
           
           const styleIndex = index % 4;
           const styleClass = styleIndex > 0 ? `alt-${styleIndex}` : '';
-          const randomDeg = (Math.random() * 7 - 3.5).toFixed(1);
           
-          note.className = `note ${styleClass}`;
-          note.style.transform = `rotate(${randomDeg}deg)`;
+          const messageText = item.message || '';
+          
+          // 長文判定門檻：500字
+          const isLongText = messageText.length > 500;
+
+          if (isLongText) {
+            note.className = `note ${styleClass} long-text`;
+          } else {
+            const randomDeg = (Math.random() * 7 - 3.5).toFixed(1);
+            note.className = `note ${styleClass}`;
+            note.style.transform = `rotate(${randomDeg}deg)`;
+          }
 
           note.innerHTML = `
             <div class="note-to">To: ${escapeHtml(item.receiver || '無')}</div>
-            <div class="note-body">${escapeHtml(item.message || '')}</div>
+            <div class="note-body">${escapeHtml(messageText)}</div>
             <div class="note-from">—— ${escapeHtml(item.sender || '匿名')}</div>
           `;
 
@@ -195,7 +221,7 @@
         });
 
       } catch (error) {
-        console.error("抓取留言失敗：", error);
+        console.error("抓取紀錄失敗：", error);
       }
     }
 
