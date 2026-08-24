@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>實驗記錄簿｜關係實驗室</title>
   
-  <!-- 社群預覽標籤 (Open Graph / FB / LINE / Messenger) -->
+  <!-- 社群預覽標籤 -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="實驗記錄簿｜關係實驗室">
   <meta property="og:description" content="待實踐的關係，讓文字踏出第一步。歡迎在這裡留下你的便利貼與實驗紀錄。">
@@ -17,10 +17,10 @@
   <meta name="twitter:description" content="待實踐的關係，讓文字踏出第一步。歡迎在這裡留下你的便利貼與實驗紀錄。">
   <meta name="twitter:image" content="https://lwlai12.github.io/tree-hole/preview.png">
 
-  <!-- 載入 Google 字體：Zen Maru Gothic (圓體/便利貼) + Noto Serif TC (高級明體/標題) -->
+  <!-- 載入 Google 字體：思源宋體 (標題/介面典雅風) + 圓體 (便利貼內容) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
   
   <style>
     * {
@@ -29,11 +29,11 @@
       padding: 0;
     }
 
-    /* 主題色：深藍色系漸層 */
+    /* 夜空感深藍漸層背景 */
     body {
-      background: radial-gradient(circle at center, #1b2a47 0%, #0a1128 100%);
+      background: radial-gradient(circle at center, #1b263b 0%, #0d1b2a 60%, #020813 100%);
       font-family: 'Zen Maru Gothic', sans-serif;
-      color: #e2ebd9;
+      color: #e0e1dd;
       display: flex;
       justify-content: center;
       min-height: 100vh;
@@ -47,25 +47,27 @@
       position: relative;
     }
 
+    /* 標題區：套用思源宋體 */
     header {
       text-align: center;
       margin-bottom: 25px;
       padding-top: 10px;
+      font-family: 'Noto Serif TC', serif;
     }
 
-    /* 標題套用優雅明體 (思源宋體) */
     header h1 {
-      font-family: 'Noto Serif TC', serif;
       font-size: 1.8rem;
       letter-spacing: 2px;
-      color: #dbe7ff;
-      text-shadow: 0 0 12px rgba(219, 231, 255, 0.35);
+      color: #e0e1dd;
+      text-shadow: 0 0 12px rgba(224, 225, 221, 0.25);
+      font-weight: 700;
     }
 
     header p {
-      font-size: 0.85rem;
-      color: #8fa0c0;
-      margin-top: 6px;
+      font-size: 0.88rem;
+      color: #778da9;
+      margin-top: 8px;
+      letter-spacing: 1px;
     }
 
     .board {
@@ -80,9 +82,10 @@
       color: #2c2c2c;
       padding: 20px;
       border-radius: 2px;
-      box-shadow: 4px 6px 15px rgba(0,0,0,0.4);
+      box-shadow: 4px 6px 15px rgba(0,0,0,0.45);
       position: relative;
       transition: transform 0.3s ease;
+      font-family: 'Zen Maru Gothic', sans-serif;
     }
 
     .note.alt-1 { background: #fce1e4; }
@@ -98,14 +101,14 @@
       width: 70px;
       height: 20px;
       background: rgba(255, 255, 255, 0.45);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
       backdrop-filter: blur(1px);
     }
 
-    /* 長文模式樣式 */
+    /* 長文模式樣式 (擺正、信紙感、夜空深藍邊框與膠帶) */
     .note.long-text {
       transform: rotate(0deg) !important;
-      border-left: 4px solid #2a4365; /* 深藍色邊框 */
+      border-left: 4px solid #3d5a80;
       padding: 22px 20px;
     }
 
@@ -144,35 +147,41 @@
       color: #555;
     }
 
-    /* 懸浮按鈕：深藍色主題 */
+    /* 懸浮按鈕：套用思源宋體與深藍色調 */
     .fab-btn {
       position: fixed;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      background: #2a4365;
-      color: #fff;
+      background: #1f3a5f;
+      color: #e0e1dd;
       padding: 12px 28px;
       border-radius: 30px;
       text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      border: 1px solid #42638e;
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+      border: 1px solid #3d5a80;
       display: flex;
       align-items: center;
       gap: 8px;
       z-index: 100;
+      transition: background 0.3s, transform 0.2s;
     }
 
     .fab-btn:active {
       transform: translateX(-50%) scale(0.95);
-      background: #1e3048;
+      background: #142843;
     }
 
+    /* 載入提示：套用思源宋體 */
     .loading {
       text-align: center;
       padding: 40px;
-      color: #8fa0c0;
+      color: #778da9;
+      font-family: 'Noto Serif TC', serif;
+      letter-spacing: 1px;
     }
   </style>
 </head>
@@ -217,7 +226,7 @@
           
           const messageText = item.message || '';
           
-          // 長文門檻：超過 300 字擺正呈現
+          // 長文門檻：超過 300 字即轉為直式擺正
           const isLongText = messageText.length > 300;
 
           if (isLongText) {
