@@ -17,7 +17,7 @@
   <meta name="twitter:description" content="待實踐的關係，讓文字踏出第一步。歡迎在這裡留下你的便利貼與實驗紀錄。">
   <meta name="twitter:image" content="https://lwlai12.github.io/tree-hole/preview.png">
 
-  <!-- 載入 Google 字體：思源宋體 (標題/介面典雅風) + 圓體 (便利貼內容) -->
+  <!-- 載入字體：Noto Serif TC (思源宋體 - 網站 UI 專用) & Zen Maru Gothic (圓體 - 便利貼專用) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
@@ -29,9 +29,9 @@
       padding: 0;
     }
 
-    /* 夜空感深藍漸層背景 */
+    /* 夜空星辰主題背景 */
     body {
-      background: radial-gradient(circle at center, #1b263b 0%, #0d1b2a 60%, #020813 100%);
+      background: radial-gradient(circle at top, #1b263b 0%, #0d1b2a 100%);
       font-family: 'Zen Maru Gothic', sans-serif;
       color: #e0e1dd;
       display: flex;
@@ -43,11 +43,11 @@
     .container {
       width: 100%;
       max-width: 480px;
-      padding: 20px 15px 90px 15px;
+      padding: 20px 15px 95px 15px;
       position: relative;
     }
 
-    /* 標題區：套用思源宋體 */
+    /* 標題與網站 UI 狀態採用典雅思源宋體 */
     header {
       text-align: center;
       margin-bottom: 25px;
@@ -56,11 +56,10 @@
     }
 
     header h1 {
-      font-size: 1.8rem;
-      letter-spacing: 2px;
+      font-size: 1.85rem;
+      letter-spacing: 3px;
       color: #e0e1dd;
       text-shadow: 0 0 12px rgba(224, 225, 221, 0.25);
-      font-weight: 700;
     }
 
     header p {
@@ -82,10 +81,9 @@
       color: #2c2c2c;
       padding: 20px;
       border-radius: 2px;
-      box-shadow: 4px 6px 15px rgba(0,0,0,0.45);
+      box-shadow: 4px 6px 18px rgba(0,0,0,0.45);
       position: relative;
       transition: transform 0.3s ease;
-      font-family: 'Zen Maru Gothic', sans-serif;
     }
 
     .note.alt-1 { background: #fce1e4; }
@@ -101,14 +99,14 @@
       width: 70px;
       height: 20px;
       background: rgba(255, 255, 255, 0.45);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
       backdrop-filter: blur(1px);
     }
 
-    /* 長文模式樣式 (擺正、信紙感、夜空深藍邊框與膠帶) */
+    /* 長文模式樣式 */
     .note.long-text {
       transform: rotate(0deg) !important;
-      border-left: 4px solid #3d5a80;
+      border-left: 4px solid #415a77;
       padding: 22px 20px;
     }
 
@@ -147,35 +145,36 @@
       color: #555;
     }
 
-    /* 懸浮按鈕：套用思源宋體與深藍色調 */
+    /* 寫下便利貼懸浮按鈕：採用思源宋體，並設定不換行與加寬 */
     .fab-btn {
       position: fixed;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      background: #1f3a5f;
-      color: #e0e1dd;
-      padding: 12px 28px;
+      background: #415a77;
+      color: #f8f9fa;
+      padding: 13px 32px;
       border-radius: 30px;
       text-decoration: none;
       font-family: 'Noto Serif TC', serif;
       font-weight: 700;
+      font-size: 0.95rem;
       letter-spacing: 1px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
-      border: 1px solid #3d5a80;
+      white-space: nowrap; /* 強制按鈕單列不換行 */
+      box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+      border: 1px solid #778da9;
       display: flex;
       align-items: center;
       gap: 8px;
       z-index: 100;
-      transition: background 0.3s, transform 0.2s;
     }
 
     .fab-btn:active {
       transform: translateX(-50%) scale(0.95);
-      background: #142843;
+      background: #1b263b;
     }
 
-    /* 載入提示：套用思源宋體 */
+    /* 載入與狀態提示文字採用思源宋體 */
     .loading {
       text-align: center;
       padding: 40px;
@@ -226,7 +225,7 @@
           
           const messageText = item.message || '';
           
-          // 長文門檻：超過 300 字即轉為直式擺正
+          // 長文判定 (300字)
           const isLongText = messageText.length > 300;
 
           if (isLongText) {
